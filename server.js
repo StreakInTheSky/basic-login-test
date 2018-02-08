@@ -2,10 +2,13 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
+const routes = require('routes')
+
 const app = express()
 
 app.use(bodyParser.json())
 app.use(express.static('public'))
+app.use('/', routes)
 
 // error handling
 app.use((err, req, res, next)=>{
