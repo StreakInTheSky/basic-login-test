@@ -1,12 +1,26 @@
 <html>
   <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <form action="">
-      <label for="email">email: </label><input type="email" name="email">
-      <label for="password">password: </label><input type="password" name="password">
-      <button>Sign Up</button> 
-    </form> 
+    <form id="signup" action="">
+      <label for="signupEmail">email: </label><input type="email" name="signupEmail">
+      <label for="signupPassword">password: </label><input type="password" name="signupPassword">
+      <button id="signup-button">Sign Up</button>
+    </form>
+    <form id="login" action="">
+      <label for="loginEmail">email: </label><input type="email" name="loginEmail">
+      <label for="loginPassword">password: </label><input type="password" name="loginPassword">
+      <button id="login-button">Login</button>
+    </form>
+    <p class="dump">
+    </p>
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="app.js"></script>
   </body>
 </html>
