@@ -24,9 +24,8 @@ function signup() {
   }
 
   $.post(settings)
-    .done(function() {
-      console.log('success')
-      $('.dump').text('User Created')
+    .done(function(data) {
+      $('.dump').text('Created user with ' + data)
     })
     .fail(function(xhr, status, errorThrown) {
       console.log('failure')
