@@ -8,7 +8,7 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(express.static('public'))
-app.use('/', routes)
+app.use('/api', routes)
 
 // error handling
 app.use((err, req, res, next)=>{
