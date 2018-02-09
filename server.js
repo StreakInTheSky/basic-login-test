@@ -12,7 +12,7 @@ app.use('/', routes)
 
 // error handling
 app.use((err, req, res, next)=>{
-  console.error(err.message)
+  console.error(err)
   res.status(err.status || 500).send(err.message)
 })
 
