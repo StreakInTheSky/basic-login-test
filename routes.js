@@ -23,10 +23,17 @@ router.post('/', (req, res, next)=>{
         })
       }
 
-      console.log({
-        email: req.body.email,
-        password: req.body.password
-      })
+      return User.hashPassword(req.body.password)
+    })
+    .then(hash=>{
+      return User
+        .create({
+          email: req.body.email,
+          password: hash
+        })
+    })
+    .then(result=>{
+      res.status(200).send(result.email)
     })
     .catch(err=>next(err))
 })
