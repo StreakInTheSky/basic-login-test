@@ -6,7 +6,11 @@ const userSchema = mongoose.Schema({
   password: {type: String, required: true}
 })
 
-userSchema.statics.hashPassword = password => {
+userSchema.methods.validatePassword = function(password) {
+  return bcrypt.compare(password, this.password)
+}
+
+userSchema.statics.hashPassword = function(password) {
   return bcrypt.hash(password, 10)
 }
 

@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const auth = require('basic-auth')
 const User = require('./model')
 
 router.post('/', (req, res, next)=>{
@@ -34,6 +35,33 @@ router.post('/', (req, res, next)=>{
     })
     .then(result=>{
       res.status(200).send(result.email)
+    })
+    .catch(err=>next(err))
+})
+
+router.get('/', (req, res, next)=>{
+  let user
+  const errObj = {
+    status: 422,
+    message: 'email or password are incorrect'
+  }
+
+  return User
+    .findOne({email: auth(req).name})
+    .then(results=>{
+      if(!results){ 
+        return Promise.reject(errObj)
+      }
+      
+      user = results
+      return user.validatePassword(auth(req).pass)
+    })
+    .then(validation=>{
+      if(!validation){
+        return Promise.reject(errObj) 
+      }
+
+      res.status(200).send(user)
     })
     .catch(err=>next(err))
 })
